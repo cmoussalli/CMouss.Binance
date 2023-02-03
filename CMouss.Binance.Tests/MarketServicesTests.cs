@@ -1,11 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Binance;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Binance.Tests
+using CMouss.Binance;
+
+namespace CMouss.Binance.Tests
 {
     [TestClass]
     public class MarketServicesTests

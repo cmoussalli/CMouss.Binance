@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Binance\Binance.csproj" />
+    <ProjectReference Include="..\CMouss.Binance\CMouss.Binance.csproj" />
   </ItemGroup>
 
 </Project>

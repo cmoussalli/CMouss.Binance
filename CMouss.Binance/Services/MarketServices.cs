@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 
-namespace Binance
+namespace CMouss.Binance
 {
 
     public class MarketServices

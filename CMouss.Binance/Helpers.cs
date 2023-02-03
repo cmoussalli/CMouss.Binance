@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Binance
+namespace CMouss.Binance
 {
     public static class Helpers
     {

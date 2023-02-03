@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Binance
+namespace CMouss.Binance
 {
     public class MarketResponseModels
     {

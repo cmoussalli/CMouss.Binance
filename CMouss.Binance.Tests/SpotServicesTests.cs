@@ -1,10 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Binance;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace Binance.Tests
+using CMouss.Binance;
+
+namespace CMouss.Binance.Tests
 {
     [TestClass]
     public class SpotServicesTests

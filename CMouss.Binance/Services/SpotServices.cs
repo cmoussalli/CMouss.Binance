@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 
 
-namespace Binance
+namespace CMouss.Binance
 {
 
     public class SpotServices

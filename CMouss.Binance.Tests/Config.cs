@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Binance;
+using CMouss.Binance;
 
-namespace Binance
+namespace CMouss.Binance.Tests
 {
     public static class Config
     {
