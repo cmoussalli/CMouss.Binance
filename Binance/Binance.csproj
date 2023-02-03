@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.11</Version>
+    <Authors>CMouss</Authors>
+    <Company />
+    <Product>CMouss.Binance</Product>
+    <PackageId>CMouss.Binance</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\RequestModels\" />
+  </ItemGroup>
+
+  <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent;AfterRebuild">
+    <Exec Command="xcopy  &quot;$(ProjectDir)bin\Debug\*.nupkg&quot; &quot;D:\Projects\_Libraries\_Nuget\&quot;" />
+  </Target>-->
+
+
+
+</Project>
