@@ -3,11 +3,14 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.11</Version>
-    <Authors>CMouss</Authors>
+    <Version>0.0.12</Version>
+    <Authors>Caesar Moussalli</Authors>
     <Company />
     <Product>CMouss.Binance</Product>
     <PackageId>CMouss.Binance</PackageId>
+    <PackageProjectUrl>https://github.com/cmoussalli/CMouss.Binance</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cmoussalli/CMouss.Binance</RepositoryUrl>
+    <Title>CMouss.Binance</Title>
   </PropertyGroup>
 
   <ItemGroup>
