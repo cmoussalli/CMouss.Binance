@@ -22,6 +22,19 @@ namespace CMouss.Binance.Tests
         }
         #endregion
 
+        #region Get Eligible Dust Assets
+        [TestMethod]
+        public void GetEligibleDustAssetsAsync()
+        {
+            BinanceServices b = new BinanceServices(Config.GetConfig());
+            var task = Task.Run(async () => await b.SpotServices.GetDustEligableAssetsAsync());
+            var result = task.Result;
+            Assert.IsTrue(decimal.Parse( result.totalTransferBNB) > 0);
+        }
+        #endregion
+
+
+
         #region Get Open Orders
         [TestMethod]
         public void GetOpenOrdersAsync_All()
