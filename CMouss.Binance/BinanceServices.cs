@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,17 +35,21 @@ namespace CMouss.Binance
             Init(config);
         }
 
+        
+
 
         #endregion
 
         private void Init(BinanceConfig config)
         {
             _config = config;
+            walletServices = new WalletServices(config);
             marketServices = new MarketServices(config);
             spotServices = new SpotServices(config);
         }
 
 
+        WalletServices walletServices; public WalletServices WalletServices { get { return walletServices; } }
         MarketServices marketServices; public MarketServices MarketServices { get { return marketServices; } }
         SpotServices spotServices; public SpotServices SpotServices { get { return spotServices; } }
     }

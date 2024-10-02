@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CMouss.Binance.Services;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,20 +14,15 @@ using System.Threading.Tasks;
 namespace CMouss.Binance
 {
 
-    public class SpotServices
+    public class SpotServices : BinanceService
     {
-        #region Props
-        BinanceConfig _config = new BinanceConfig();
-        public BinanceConfig Config { get { return _config; } }
-
-        #endregion
-
         #region Constructor
         public SpotServices(BinanceConfig config)
         {
-            _config = config;
+            Config = config;
         }
         #endregion
+
 
 
 
@@ -40,7 +36,7 @@ namespace CMouss.Binance
             string pars = "";
             pars = pars + "timestamp=" + Helpers.GetUnixTimeStamp();
             pars = pars + "&signature=" + Helpers.CreateSignature(pars, Config.UserAPISecret);
-            string resStr = await client.GetStringAsync(_config.BaseURL + "api/v3/account?" + pars);
+            string resStr = await client.GetStringAsync(Config.BaseURL + "api/v3/account?" + pars);
             res = JsonSerializer.Deserialize<SpotResponseModels.AccountInfo>(resStr);
             return res;
 
@@ -48,24 +44,7 @@ namespace CMouss.Binance
         #endregion
 
 
-        #region Dust
-        public async Task<SpotResponseModels.DustEligableAssets> GetDustEligableAssetsAsync()
-        {
-            SpotResponseModels.DustEligableAssets res = new();
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Add("X-MBX-APIKEY", Config.UserAPIKey);
-            string pars = "";
-            pars = pars + "timestamp=" + Helpers.GetUnixTimeStamp();
-            //if (symbol != null) { pars = pars + "&symbol=" + symbol; }recvWindow
-            pars = pars + "&signature=" + Helpers.CreateSignature(pars, Config.UserAPISecret);
-            string resStr = await client.PostStringAsync(_config.BaseURL + "sapi/v1/asset/dust-btc?" + pars);
-            res = JsonSerializer.Deserialize<SpotResponseModels.DustEligableAssets>(resStr);
-            return res;
-
-        }
-        #endregion
-
-
+        
 
 
         #region Get Open Orders
@@ -83,7 +62,7 @@ namespace CMouss.Binance
             pars = pars + "timestamp=" + Helpers.GetUnixTimeStamp();
             if (symbol != null) { pars = pars + "&symbol=" + symbol; }
             pars = pars + "&signature=" + Helpers.CreateSignature(pars, Config.UserAPISecret);
-            string resStr = await client.PostAsync(_config.BaseURL + "api/v3/openOrders?" + pars,null);
+            string resStr = await client.GetStringAsync(_config.BaseURL + "api/v3/openOrders?" + pars);
             res = JsonSerializer.Deserialize<List<Order>>(resStr);
             return res;
 

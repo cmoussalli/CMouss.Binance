@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,10 @@ namespace CMouss.Binance
 {
     public static class Helpers
     {
+
+
+
+
 
         public static string GetUnixTimeStamp()
         {
@@ -19,6 +25,10 @@ namespace CMouss.Binance
         {
             return ((DateTimeOffset)dateTime).ToUnixTimeMilliseconds().ToString();
         }
+
+
+
+
 
 
         public static string CreateSignature(string queryString, string secret)

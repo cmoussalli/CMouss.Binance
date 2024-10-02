@@ -4,35 +4,25 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
-
-namespace CMouss.Binance
+namespace CMouss.Binance.Services
 {
-
-    public class WalletServices
+    public class BinanceService
     {
+
         #region Props
-        BinanceConfig _config = new BinanceConfig();
-        public BinanceConfig Config { get { return _config; } }
+        public BinanceConfig Config { get; set; } 
 
         #endregion
 
 
-        #region Constructor
-        public WalletServices(BinanceConfig config)
+
+
+
+
+        public async Task<HttpClient> GetHttpClient(string url, string userAPIKey )
         {
-            _config = config;
-        }
-        #endregion
-
-
-
-        #region Dust
-        public async Task<WalletResponseModels.DustEligableAssets> GetDustBalancesAsync()
-        {
-            WalletResponseModels.DustEligableAssets res = new();
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("X-MBX-APIKEY", Config.UserAPIKey);
             string pars = "";
@@ -47,18 +37,10 @@ namespace CMouss.Binance
             }
             string resStr = await httpResp.Content.ReadAsStringAsync();
 
-            res = JsonSerializer.Deserialize<WalletResponseModels.DustEligableAssets>(resStr);
-            return res;
 
         }
 
 
 
-        #endregion
-
-
-
     }
-
-
 }
