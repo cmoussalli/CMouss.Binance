@@ -1,5 +1,4 @@
-﻿using CMouss.Binance.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -62,7 +61,7 @@ namespace CMouss.Binance
             pars = pars + "timestamp=" + Helpers.GetUnixTimeStamp();
             if (symbol != null) { pars = pars + "&symbol=" + symbol; }
             pars = pars + "&signature=" + Helpers.CreateSignature(pars, Config.UserAPISecret);
-            string resStr = await client.GetStringAsync(_config.BaseURL + "api/v3/openOrders?" + pars);
+            string resStr = await client.GetStringAsync(Config.BaseURL + "api/v3/openOrders?" + pars);
             res = JsonSerializer.Deserialize<List<Order>>(resStr);
             return res;
 
@@ -96,7 +95,7 @@ namespace CMouss.Binance
             if (utcStartTime != null && utcEndTime != null) { pars = pars + "&startTime=" + Helpers.GetUnixTimeStamp((DateTime)utcStartTime) + "&endTime=" + Helpers.GetUnixTimeStamp((DateTime)utcEndTime); }
             if (symbol != null) { pars = pars + "&symbol=" + symbol; }
             pars = pars + "&signature=" + Helpers.CreateSignature(pars, Config.UserAPISecret);
-            string resStr = await client.GetStringAsync(_config.BaseURL + "api/v3/allOrders?" + pars);
+            string resStr = await client.GetStringAsync(Config.BaseURL + "api/v3/allOrders?" + pars);
             res = JsonSerializer.Deserialize<List<Order>>(resStr);
             return res;
         }
@@ -135,7 +134,7 @@ namespace CMouss.Binance
             if (symbol != null) { pars = pars + "&symbol=" + symbol; }
             if (utcStartTime != null && utcEndTime != null) { pars = pars + "&startTime=" + Helpers.GetUnixTimeStamp((DateTime)utcStartTime) + "&endTime=" + Helpers.GetUnixTimeStamp((DateTime)utcEndTime); }
             pars = pars + "&signature=" + Helpers.CreateSignature(pars, Config.UserAPISecret);
-            string resStr = await client.GetStringAsync(_config.BaseURL + "api/v3/myTrades?" + pars);
+            string resStr = await client.GetStringAsync(Config.BaseURL + "api/v3/myTrades?" + pars);
             res = JsonSerializer.Deserialize<List<Trade>>(resStr);
             return res;
         }
@@ -153,7 +152,7 @@ namespace CMouss.Binance
             if (symbol != null) { pars = pars + "&symbol=" + symbol; }
             if (orderId != null) { pars = pars + "&orderId=" + orderId; }
             pars = pars + "&signature=" + Helpers.CreateSignature(pars, Config.UserAPISecret);
-            await client.DeleteAsync(_config.BaseURL + "api/v3/order?" + pars);
+            await client.DeleteAsync(Config.BaseURL + "api/v3/order?" + pars);
             return "Ok";
         }
         #endregion
@@ -168,7 +167,7 @@ namespace CMouss.Binance
             if (symbol != null) { pars = pars + "&symbol=" + symbol; }
 
             pars = pars + "&signature=" + Helpers.CreateSignature(pars, Config.UserAPISecret);
-             await client.DeleteAsync(_config.BaseURL + "api/v3/openOrders?" + pars);
+             await client.DeleteAsync(Config.BaseURL + "api/v3/openOrders?" + pars);
             return "Ok";
         }
         #endregion
@@ -220,7 +219,7 @@ namespace CMouss.Binance
             var payload = "";
             HttpContent content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage res = await client.PostAsync(_config.BaseURL + "api/v3/order?" + pars,content);
+            HttpResponseMessage res = await client.PostAsync(Config.BaseURL + "api/v3/order?" + pars,content);
             if (!res.IsSuccessStatusCode)
             {
 
@@ -267,7 +266,7 @@ namespace CMouss.Binance
             var payload = "";
             HttpContent content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage res = await client.PostAsync(_config.BaseURL + "api/v3/order/oco?" + pars, content);
+            HttpResponseMessage res = await client.PostAsync(Config.BaseURL + "api/v3/order/oco?" + pars, content);
             if (!res.IsSuccessStatusCode)
             {
 

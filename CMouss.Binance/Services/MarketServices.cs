@@ -10,19 +10,13 @@ using System.Threading.Tasks;
 namespace CMouss.Binance
 {
 
-    public class MarketServices
+    public class MarketServices : BinanceService
     {
-        #region Props
-        BinanceConfig _config = new BinanceConfig();
-        public BinanceConfig Config { get { return _config; } }
-
-        #endregion
-
 
         #region Constructor
         public MarketServices(BinanceConfig config)
         {
-            _config = config;
+            Config = config;
         }
         #endregion
 
@@ -30,7 +24,7 @@ namespace CMouss.Binance
         {
             MarketResponseModels.ServerTimeInfo res = new MarketResponseModels.ServerTimeInfo();
             HttpClient client = new HttpClient();
-            string resStr = await client.GetStringAsync(_config.BaseURL + "api/v3/time");
+            string resStr = await client.GetStringAsync(Config.BaseURL + "api/v3/time");
             res = JsonSerializer.Deserialize<MarketResponseModels.ServerTimeInfo>(resStr);
             return res.serverTime;
 
@@ -41,7 +35,7 @@ namespace CMouss.Binance
         {
             MarketResponseModels.ExchangeInfo res = new MarketResponseModels.ExchangeInfo();
             HttpClient client = new HttpClient();
-            string resStr = await client.GetStringAsync(_config.BaseURL + "api/v3/exchangeInfo");
+            string resStr = await client.GetStringAsync(Config.BaseURL + "api/v3/exchangeInfo");
             res = JsonSerializer.Deserialize<MarketResponseModels.ExchangeInfo>(resStr);
             return res;
 
@@ -51,7 +45,7 @@ namespace CMouss.Binance
         {
             List<SymbolPrice> res = new List<SymbolPrice>();
             HttpClient client = new HttpClient();
-            string resStr = await client.GetStringAsync(_config.BaseURL + "api/v3/ticker/price");
+            string resStr = await client.GetStringAsync(Config.BaseURL + "api/v3/ticker/price");
             res = JsonSerializer.Deserialize<List<SymbolPrice>>(resStr);
             return res;
 
@@ -70,7 +64,7 @@ namespace CMouss.Binance
             string pars = $"symbol={symbol}&interval={Helpers.IntervalToString(interval)}&limit={limit}";
             if (startTime is not null) { pars = pars + "&startTime=" + Helpers.GetUnixTimeStamp((DateTime)startTime); }
             if (endTime is not null) { pars = pars + "&endTime=" + Helpers.GetUnixTimeStamp((DateTime)endTime); }
-            string resStr = await client.GetStringAsync(_config.BaseURL + "api/v3/klines?" + pars);
+            string resStr = await client.GetStringAsync(Config.BaseURL + "api/v3/klines?" + pars);
             List<string> candleStrLst = resStr.Split("[").ToList();
             foreach (string s in candleStrLst)
             {
