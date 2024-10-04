@@ -20,15 +20,17 @@ namespace CMouss.Binance
 
 
         #region Dust Models
-        public class DustEligableAssets
+
+        #region BinanceMethod: Get Assets That Can Be Converted Into BNB (USER_DATA)
+        public class GetDustEligableAssets
         {
-            public DustEligableAssets_Detail[] details { get; set; }
+            public GetDustEligableAssets_Detail[] details { get; set; }
             public string totalTransferBtc { get; set; }
             public string totalTransferBNB { get; set; }
             public string dribbletPercentage { get; set; }
         }
 
-        public class DustEligableAssets_Detail
+        public class GetDustEligableAssets_Detail
         {
             public string asset { get; set; }
             public string assetFullName { get; set; }
@@ -38,6 +40,30 @@ namespace CMouss.Binance
             public string toBNBOffExchange { get; set; }
             public string exchange { get; set; }
         }
+        #endregion
+
+        #region BinanceMethod: Dust Transfer (USER_DATA)
+
+        public class ConvertDustToBNB
+        {
+            public string totalServiceCharge { get; set; }
+            public string totalTransfered { get; set; }
+            public ConvertDustToBNB_TransferResult[] transferResult { get; set; }
+        }
+
+        public class ConvertDustToBNB_TransferResult
+        {
+            public string amount { get; set; }
+            public string fromAsset { get; set; }
+            public long operateTime { get; set; }
+            public string serviceChargeAmount { get; set; }
+            public long tranId { get; set; }
+            public string transferedAmount { get; set; }
+        }
+        #endregion
+
+
+
 
 
         #endregion

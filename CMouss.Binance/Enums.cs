@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace CMouss.Binance
 {
+
+
+    public enum AccountType
+    {
+        SPOT = 1,
+        MARGIN = 2,
+    }
+
     public enum Interval
     {
         Minute_1 = 101,
