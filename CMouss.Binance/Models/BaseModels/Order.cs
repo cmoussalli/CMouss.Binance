@@ -11,7 +11,7 @@ namespace CMouss.Binance
     {
         public string symbol { get; set; }
         public long orderId { get; set; }
-        public int orderListId { get; set; }
+        public long orderListId { get; set; }
         public string clientOrderId { get; set; }
         public string price { get; set; }
         public string origQty { get; set; }
